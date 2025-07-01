@@ -1,19 +1,18 @@
 import knex, { migrate, seed } from "#postgres/knex.js";
-
-await migrate.latest();
-await seed.run();
-
-console.log("All migrations and seeds have been run");
-
-// https://common-api.wildberries.ru/api/v1/tariffs/box
+import { startScheduler } from "#tasks/scheduler.js";
 
 
-/**
- * 
- * регулярное получение информации о тарифах wb и сохранение их в БД на каждый день;
- * 
- * регулярное обновление информации о актуальных тарифах в google-таблицах.
- * 
- * 
- */
+const runMigrations = async () => {
+    await migrate.latest();
+    // await seed.run();
+}
 
+const main = async () => {
+    await runMigrations()
+    startScheduler()
+}
+
+main().catch(err => {
+    console.log(`An error occurred while running the application: ${err}`)
+    process.exit(1)
+})

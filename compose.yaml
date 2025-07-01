@@ -25,6 +25,7 @@ services:
 
     volumes:
       - postgres-vol:/var/lib/postgresql/data
+      # - ./initdb.d:/docker-entrypoint-initdb.d
 
     networks:
       - postgres-net
@@ -53,13 +54,17 @@ services:
       dockerfile: Dockerfile
 
     environment:
-      POSTGRES_HOST: postgres
+      WB_API_KEY: ${WB_API_KEY}
+      POSTGRES_HOST: ${POSTGRES_HOST}
       POSTGRES_PORT: ${POSTGRES_PORT}
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PORT: ${APP_PORT}
-      NODE_ENV: production
+      NODE_ENV: ${NODE_ENV}
+      GOOGLE_SHEETS_SPREADSHEET_ID: ${GOOGLE_SHEETS_SPREADSHEET_ID}
+      GOOGLE_SHEETS_PRIVATE_KEY: ${GOOGLE_SHEETS_PRIVATE_KEY}
+      GOOGLE_SHEETS_CLIENT_EMAIL: ${GOOGLE_SHEETS_CLIENT_EMAIL}
 
     ports:
       - ${APP_PORT}:${APP_PORT}

@@ -28,14 +28,14 @@ const knegConfigs: Record<typeof NODE_ENV, Knex.Config> = {
             max: 10,
         },
         migrations: {
-            stub: 'src/config/knex/migration.stub.js',
-            directory: "./src/postgres/migrations",
+            stub: 'dist/config/knex/migration.stub.js',
+            directory: "./dist/postgres/migrations",
             tableName: "migrations",
-            extension: "ts",
+            extension: "js",
         },
         seeds: {
-            stub: 'src/config/knex/seed.stub.js',
-            directory: "./src/postgres/seeds",
+            stub: 'dist/config/knex/seed.stub.js',
+            directory: "./dist/postgres/seeds",
             extension: "js",
         },
     },
@@ -60,7 +60,7 @@ const knegConfigs: Record<typeof NODE_ENV, Knex.Config> = {
             extension: "js",
         },
         seeds: {
-            stub: 'src/config/knex/seed.stub.js',
+            stub: 'dist/config/knex/seed.stub.js',
             directory: "./dist/postgres/seeds",
             extension: "js",
         },
